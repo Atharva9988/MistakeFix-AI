@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MistakeFix AI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <header class="app-header">
+        <h1>MistakeFix AI</h1>
+        <p>Find exactly where your BODMAS mistake happened</p>
+    </header>
+
+    <main id="app">
+
+        <!-- SCREEN 1: Question Selection -->
+        <section id="screen-select" class="screen active">
+            <h2>Pick a problem</h2>
+            <div id="question-list" class="question-list"></div>
+        </section>
+
+        <!-- SCREEN 2: Input Form -->
+        <section id="screen-input" class="screen">
+            <button class="back-btn" id="back-to-select">&larr; Back</button>
+            <h2>Solve this</h2>
+            <p class="question-display" id="selected-question-text"></p>
+
+            <label for="student-steps">Type your working, step by step</label>
+            <textarea id="student-steps" placeholder="Example: 8 / 4 = 2, 12 + 2 = 14, 14 * 2 = 28" rows="5"></textarea>
+
+            <button id="submit-btn" class="primary-btn">Check my work</button>
+            <p id="input-error" class="error-text hidden"></p>
+        </section>
+
+        <!-- SCREEN 3: Results -->
+        <section id="screen-results" class="screen">
+            <div id="loading" class="loading hidden">
+                <p>Checking your steps...</p>
+            </div>
+
+            <div id="results-content" class="hidden">
+                <h2>Here's what happened</h2>
+
+                <div class="result-card mistake-card">
+                    <span class="label">Mistake type</span>
+                    <p id="result-mistake-type"></p>
+                </div>
+
+                <div class="result-card">
+                    <span class="label">What went wrong</span>
+                    <p id="result-explanation"></p>
+                </div>
+
+                <div class="result-card correct-card">
+                    <span class="label">Correct way</span>
+                    <p id="result-correction"></p>
+                </div>
+
+                <div class="result-card followup-card">
+                    <span class="label">Try this next</span>
+                    <p id="result-followup"></p>
+                </div>
+
+                <button id="try-again-btn" class="primary-btn">Try another problem</button>
+            </div>
+
+            <div id="results-error" class="error-text hidden">
+                <p>Something went wrong checking your answer. Please try again.</p>
+                <button id="retry-btn" class="primary-btn">Retry</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

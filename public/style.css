@@ -1,0 +1,186 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+.app-header {
+  background: #1a1a2e;
+  color: white;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.app-header p {
+  font-size: 14px;
+  color: #b8b8c8;
+}
+
+#app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+h2 {
+  font-size: 19px;
+  margin-bottom: 16px;
+}
+
+/* Question list */
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-item {
+  background: white;
+  border: 1px solid #e0e0e5;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: border-color 0.15s ease;
+}
+
+.question-item:hover {
+  border-color: #1a1a2e;
+}
+
+/* Input screen */
+.back-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  padding: 4px 0;
+}
+
+.question-display {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  border-left: 4px solid #1a1a2e;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid #d5d5db;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 16px;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #1a1a2e;
+}
+
+.primary-btn {
+  background: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.primary-btn:hover {
+  background: #16213e;
+}
+
+.primary-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.error-text {
+  color: #c0392b;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Results screen */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #555;
+}
+
+.result-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid #ccc;
+}
+
+.result-card .label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.result-card p {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.mistake-card {
+  border-left-color: #c0392b;
+}
+
+.correct-card {
+  border-left-color: #27ae60;
+}
+
+.followup-card {
+  border-left-color: #2980b9;
+}
+
+.hidden {
+  display: none !important;
+}
