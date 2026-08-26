@@ -11,6 +11,7 @@ Do not change this without both people agreeing and updating this file.
 {
   "questionId": "Q3",
   "question": "12 + 8 / 4 * 2",
+  "correctSteps": "8 / 4 = 2, 2 * 2 = 4, 12 + 4 = 16",
   "studentSteps": "8 / 4 = 2, 12 + 2 = 14, 14 * 2 = 28"
 }
 ```
@@ -38,9 +39,9 @@ not crash or show a blank screen.
 ## Question bank format (hardcoded in frontend for now)
 ```json
 [
-  { "id": "Q1", "text": "12 + 8 / 4 * 2" },
-  { "id": "Q2", "text": "20 - 6 / 2 * 3" },
-  { "id": "Q3", "text": "(5 + 3) * 2 - 4" }
+  { "id": "Q1", "text": "12 + 8 / 4 * 2", "correctSteps": "8 / 4 = 2, 2 * 2 = 4, 12 + 4 = 16" },
+  { "id": "Q2", "text": "20 - 6 / 2 * 3", "correctSteps": "6 / 2 = 3, 3 * 3 = 9, 20 - 9 = 11" },
+  { "id": "Q3", "text": "(5 + 3) * 2 - 4", "correctSteps": "5 + 3 = 8, 8 * 2 = 16, 16 - 4 = 12" }
 ]
 ```
 Person B owns this list in the frontend. Person A's backend does not need to know the
