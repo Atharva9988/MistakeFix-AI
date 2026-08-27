@@ -17,7 +17,7 @@ Find the exact step where the student's working first diverges from the correct 
 
 3. wrong_grouping_in_mul_div_chain: within a chain of only multiplication and division operations, the student grouped two operations together in the wrong order instead of resolving strictly left to right.
 
-4. bracket_step_error: the student used a bracket's result before fully resolving everything inside it, or resolved the bracket incorrectly relative to what was inside it.This category applies even if the student applied correct precedence rules everywhere else, as long as the bracket itself was mishandled.
+4. bracket_step_error: the student used a bracket's result before fully resolving everything inside it, or resolved the bracket incorrectly relative to what was inside it.
 
 5. sign_error_with_negatives: the sequence and choice of operations was entirely correct, but a negative sign was dropped, flipped, or mishandled when removing a bracket or subtracting a negative.
 
