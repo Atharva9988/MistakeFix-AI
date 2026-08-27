@@ -11,13 +11,13 @@ You will receive: the question, the correct step-by-step solution, and the stude
 
 Find the exact step where the student's working first diverges from the correct method. Classify that divergence into exactly one of these categories:
 
-1. full_precedence_ignore: the student computed operations in the literal left-to-right order of the expression, with zero regard for any precedence rule, from the very first step.
+1. full_precedence_ignore: the student computed operations in the literal left-to-right order of the expression, with zero regard for any precedence rule, from the very first step.Do NOT use this category if the student correctly handled any bracket, or correctly prioritized any single multiplication/division before an addition/subtraction. In those cases, the error belongs to category 2, 3, or 4 instead, even if other parts of the working look left-to-right.
 
 2. add_sub_before_mul_div: the student correctly prioritized at least one multiplication or division that was NOT the leftmost operator in the expression, but then performed an addition or subtraction before finishing a separate, still-pending multiplication or division elsewhere in the expression.
 
 3. wrong_grouping_in_mul_div_chain: within a chain of only multiplication and division operations, the student grouped two operations together in the wrong order instead of resolving strictly left to right.
 
-4. bracket_step_error: the student used a bracket's result before fully resolving everything inside it, or resolved the bracket incorrectly relative to what was inside it.
+4. bracket_step_error: the student used a bracket's result before fully resolving everything inside it, or resolved the bracket incorrectly relative to what was inside it.This category applies even if the student applied correct precedence rules everywhere else, as long as the bracket itself was mishandled.
 
 5. sign_error_with_negatives: the sequence and choice of operations was entirely correct, but a negative sign was dropped, flipped, or mishandled when removing a bracket or subtracting a negative.
 
@@ -37,8 +37,9 @@ def get_diagnosis(question, correct_steps, student_steps):
     user_message = f"Question: {question}\nCorrect steps: {correct_steps}\nStudent steps: {student_steps}"
 
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        max_tokens=500,
+        model="openai/gpt-oss-120b",
+        max_tokens=1000,
+        response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_message},
@@ -52,8 +53,9 @@ def get_diagnosis(question, correct_steps, student_steps):
         return json.loads(raw_text)
     except json.JSONDecodeError:
         retry_response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            max_tokens=500,
+            model="openai/gpt-oss-120b",
+            max_tokens=1000,
+            response_format={"type": "json_object"},
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT + "\n\nCRITICAL: your last response was not valid JSON. Output ONLY the JSON object, nothing else."},
                 {"role": "user", "content": user_message},
@@ -95,9 +97,8 @@ class handler(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps(result).encode())
-        except Exception:
-            self.send_response(500)
+        except Exception as e:
+            self.send_response(1000)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(json.dumps({"error": "Could not process the submission. Please try again."}).encode())
-            
+            self.wfile.write(json.dumps({"error": str(e)}).encode())

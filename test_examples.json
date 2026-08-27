@@ -1,0 +1,212 @@
+[
+  {
+    "id": "C1-1",
+    "category": "full_precedence_ignore",
+    "question": "6 + 2 * 3",
+    "correctSteps": "2*3=6, 6+6=12",
+    "studentSteps": "6+2=8, 8*3=24"
+  },
+  {
+    "id": "C1-2",
+    "category": "full_precedence_ignore",
+    "question": "20 - 4 / 2",
+    "correctSteps": "4/2=2, 20-2=18",
+    "studentSteps": "20-4=16, 16/2=8"
+  },
+  {
+    "id": "C1-3",
+    "category": "add_sub_before_mul_div",
+    "question": "5 * 2 + 3 * 4",
+    "correctSteps": "5*2=10, 3*4=12, 10+12=22",
+    "studentSteps": "5*2=10, 10+3=13, 13*4=52"
+  },
+  {
+    "id": "C1-4",
+    "category": "full_precedence_ignore",
+    "question": "8 + 6 / 3 - 1",
+    "correctSteps": "6/3=2, 8+2=10, 10-1=9",
+    "studentSteps": "8+6=14, 14/3=4.67, 4.67-1=3.67"
+  },
+  {
+    "id": "C1-5",
+    "category": "full_precedence_ignore",
+    "question": "10 - 2 * 3 + 4",
+    "correctSteps": "2*3=6, 10-6=4, 4+4=8",
+    "studentSteps": "10-2=8, 8*3=24, 24+4=28"
+  },
+  {
+    "id": "C2-1",
+    "category": "add_sub_before_mul_div",
+    "question": "12 + 8 / 4 * 2",
+    "correctSteps": "8/4=2, 2*2=4, 12+4=16",
+    "studentSteps": "8/4=2, 12+2=14, 14*2=28"
+  },
+  {
+    "id": "C2-2",
+    "category": "add_sub_before_mul_div",
+    "question": "7 + 9 / 3 * 2",
+    "correctSteps": "9/3=3, 3*2=6, 7+6=13",
+    "studentSteps": "9/3=3, 7+3=10, 10*2=20"
+  },
+  {
+    "id": "C2-3",
+    "category": "add_sub_before_mul_div",
+    "question": "9 - 3 * 2 + 4 / 2",
+    "correctSteps": "3*2=6, 4/2=2, 9-6=3, 3+2=5",
+    "studentSteps": "3*2=6, 9-6=3, 3+4=7, 7/2=3.5"
+  },
+  {
+    "id": "C2-4",
+    "category": "add_sub_before_mul_div",
+    "question": "6 + 10 / 5 * 3",
+    "correctSteps": "10/5=2, 2*3=6, 6+6=12",
+    "studentSteps": "10/5=2, 6+2=8, 8*3=24"
+  },
+  {
+    "id": "C2-5",
+    "category": "add_sub_before_mul_div",
+    "question": "20 / 4 + 3 * 2",
+    "correctSteps": "20/4=5, 3*2=6, 5+6=11",
+    "studentSteps": "20/4=5, 5+3=8, 8*2=16"
+  },
+  {
+    "id": "C3-1",
+    "category": "wrong_grouping_in_mul_div_chain",
+    "question": "24 / 4 * 2",
+    "correctSteps": "24/4=6, 6*2=12",
+    "studentSteps": "4*2=8, 24/8=3"
+  },
+  {
+    "id": "C3-2",
+    "category": "wrong_grouping_in_mul_div_chain",
+    "question": "6 + 20 / 2 * 5",
+    "correctSteps": "20/2=10, 10*5=50, 6+50=56",
+    "studentSteps": "2*5=10, 20/10=2, 6+2=8"
+  },
+  {
+    "id": "C3-3",
+    "category": "wrong_grouping_in_mul_div_chain",
+    "question": "50 / 5 * 2",
+    "correctSteps": "50/5=10, 10*2=20",
+    "studentSteps": "5*2=10, 50/10=5"
+  },
+  {
+    "id": "C3-4",
+    "category": "wrong_grouping_in_mul_div_chain",
+    "question": "9 + 16 / 4 * 3",
+    "correctSteps": "16/4=4, 4*3=12, 9+12=21",
+    "studentSteps": "4*3=12, 16/12=1.33, 9+1.33=10.33"
+  },
+  {
+    "id": "C3-5",
+    "category": "wrong_grouping_in_mul_div_chain",
+    "question": "100 / 10 * 5 - 2",
+    "correctSteps": "100/10=10, 10*5=50, 50-2=48",
+    "studentSteps": "10*5=50, 100/50=2, 2-2=0"
+  },
+  {
+    "id": "C4-1",
+    "category": "bracket_step_error",
+    "question": "(5 + 3) * 2",
+    "correctSteps": "5+3=8, 8*2=16",
+    "studentSteps": "5+3*2=5+6=11"
+  },
+  {
+    "id": "C4-2",
+    "category": "bracket_step_error",
+    "question": "4 * (6 - 2)",
+    "correctSteps": "6-2=4, 4*4=16",
+    "studentSteps": "4*6=24, 24-2=22"
+  },
+  {
+    "id": "C4-3",
+    "category": "bracket_step_error",
+    "question": "(10 - 4) / 2 + 3",
+    "correctSteps": "10-4=6, 6/2=3, 3+3=6",
+    "studentSteps": "4/2=2, 10-2=8, 8+3=11"
+  },
+  {
+    "id": "C4-4",
+    "category": "bracket_step_error",
+    "question": "(2 * (3 + 4 * 2)",
+    "correctSteps": "4*2=8, 3+8=11, 2*11=22",
+    "studentSteps": "2*3=6, 6+4*2=6+8=14"
+  },
+  {
+    "id": "C4-5",
+    "category": "bracket_step_error",
+    "question": "(15 - 5) / (2 + 3)",
+    "correctSteps": "15-5=10, 2+3=5, 10/5=2",
+    "studentSteps": "15-5=10, 10/2=5, 5+3=8"
+  },
+  {
+    "id": "C5-1",
+    "category": "sign_error_with_negatives",
+    "question": "10 - (4 - 7)",
+    "correctSteps": "4-7=-3, 10-(-3)=13",
+    "studentSteps": "4-7=-3, 10-3=7"
+  },
+  {
+    "id": "C5-2",
+    "category": "sign_error_with_negatives",
+    "question": "8 - 2 * (-3)",
+    "correctSteps": "2*(-3)=-6, 8-(-6)=14",
+    "studentSteps": "2*(-3)=-6, 8-6=2"
+  },
+  {
+    "id": "C5-3",
+    "category": "sign_error_with_negatives",
+    "question": "-(5 - 9) + 2",
+    "correctSteps": "5-9=-4, -(-4)=4, 4+2=6",
+    "studentSteps": "5-9=-4, -4+2=-2"
+  },
+  {
+    "id": "C5-4",
+    "category": "sign_error_with_negatives",
+    "question": "12 / (-4) + 5",
+    "correctSteps": "12/(-4)=-3, -3+5=2",
+    "studentSteps": "12/4=3, 3+5=8"
+  },
+  {
+    "id": "C5-5",
+    "category": "sign_error_with_negatives",
+    "question": "7 - 3 - (-2)",
+    "correctSteps": "7-3=4, 4-(-2)=6",
+    "studentSteps": "7-3=4, 4-2=2"
+  },
+  {
+    "id": "C6-1",
+    "category": "dropped_or_miscarried_term",
+    "question": "5 + 3 * 4 - 2",
+    "correctSteps": "3*4=12, 5+12=17, 17-2=15",
+    "studentSteps": "3*4=12, 5+12=17, stops, answers 17"
+  },
+  {
+    "id": "C6-2",
+    "category": "dropped_or_miscarried_term",
+    "question": "(6 + 2) * 3 + 4",
+    "correctSteps": "6+2=8, 8*3=24, 24+4=28",
+    "studentSteps": "6+2=8, 8*3=24, drops +4, answers 24"
+  },
+  {
+    "id": "C6-3",
+    "category": "dropped_or_miscarried_term",
+    "question": "9 * 2 - 3 + 5",
+    "correctSteps": "9*2=18, 18-3=15, 15+5=20",
+    "studentSteps": "9*2=18, 18-3=15, miscopies as 51, 51+5=56"
+  },
+  {
+    "id": "C6-4",
+    "category": "dropped_or_miscarried_term",
+    "question": "4 + 6 / 2 * 3",
+    "correctSteps": "6/2=3, 3*3=9, 4+9=13",
+    "studentSteps": "6/2=3, 3*3=9, miscopies as 6, 4+6=10"
+  },
+  {
+    "id": "C6-5",
+    "category": "dropped_or_miscarried_term",
+    "question": "8 - 2 + 3 * 4",
+    "correctSteps": "3*4=12, 8-2=6, 6+12=18",
+    "studentSteps": "3*4=12, 8-2=6, drops the 12, answers 6"
+  }
+]
