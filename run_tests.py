@@ -1,4 +1,5 @@
 import json
+import time
 import urllib.request
 import urllib.error
 
@@ -30,6 +31,8 @@ for ex in examples:
     passed = got == ex["category"]
     results.append((ex["id"], ex["category"], got, passed))
     print(f"{ex['id']}: expected={ex['category']} got={got} {'PASS' if passed else 'FAIL'}")
+
+    time.sleep(2)
 
 total = len(results)
 passed_count = sum(1 for r in results if r[3])

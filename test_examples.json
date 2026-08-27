@@ -113,7 +113,7 @@
   },
   {
     "id": "C4-2",
-    "category": "bracket_step_error",
+    "category": "full_precedence_ignore",
     "question": "4 * (6 - 2)",
     "correctSteps": "6-2=4, 4*4=16",
     "studentSteps": "4*6=24, 24-2=22"
