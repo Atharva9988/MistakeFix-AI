@@ -1,14 +1,46 @@
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 const QUESTIONS = [
-  { id: "Q1", text: "12 + 8 / 4 * 2" },
-  { id: "Q2", text: "20 - 6 / 2 * 3" },
-  { id: "Q3", text: "(5 + 3) * 2 - 4" },
-  { id: "Q4", text: "18 / 3 + 2 * 5" },
-  { id: "Q5", text: "10 - 2 * 3 + 4" },
-  { id: "Q6", text: "(12 - 4) / 2 * 3" },
-  { id: "Q7", text: "6 * 2 - 8 / 4" },
-  { id: "Q8", text: "15 + 3 * (4 - 2)" },
+  {
+    id: "Q1",
+    text: "12 + 8 / 4 * 2",
+    correctSteps: "8 / 4 = 2, 2 * 2 = 4, 12 + 4 = 16",
+  },
+  {
+    id: "Q2",
+    text: "20 - 6 / 2 * 3",
+    correctSteps: "6 / 2 = 3, 3 * 3 = 9, 20 - 9 = 11",
+  },
+  {
+    id: "Q3",
+    text: "(5 + 3) * 2 - 4",
+    correctSteps: "5 + 3 = 8, 8 * 2 = 16, 16 - 4 = 12",
+  },
+  {
+    id: "Q4",
+    text: "18 / 3 + 2 * 5",
+    correctSteps: "18 / 3 = 6, 2 * 5 = 10, 6 + 10 = 16",
+  },
+  {
+    id: "Q5",
+    text: "10 - 2 * 3 + 4",
+    correctSteps: "2 * 3 = 6, 10 - 6 = 4, 4 + 4 = 8",
+  },
+  {
+    id: "Q6",
+    text: "(12 - 4) / 2 * 3",
+    correctSteps: "12 - 4 = 8, 8 / 2 = 4, 4 * 3 = 12",
+  },
+  {
+    id: "Q7",
+    text: "6 * 2 - 8 / 4",
+    correctSteps: "6 * 2 = 12, 8 / 4 = 2, 12 - 2 = 10",
+  },
+  {
+    id: "Q8",
+    text: "15 + 3 * (4 - 2)",
+    correctSteps: "4 - 2 = 2, 3 * 2 = 6, 15 + 6 = 21",
+  },
 ];
 
 const MOCK_RESPONSE = {
@@ -107,6 +139,7 @@ async function getDiagnosis(question, studentSteps) {
     body: JSON.stringify({
       questionId: question.id,
       question: question.text,
+      correctSteps: question.correctSteps,
       studentSteps: studentSteps,
     }),
   });
