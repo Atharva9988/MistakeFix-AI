@@ -308,6 +308,19 @@ class handler(BaseHTTPRequestHandler):
         correct_steps = data.get("correctSteps")
         student_steps = data.get("studentSteps")
 
+        if len(student_steps.strip()) < 5 or not any(char.isdigit() for char in student_steps):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                "mistakeType": "insufficient_input",
+                "divergedAtStep": 0,
+                "explanation": "We couldn't read your working. Please write out each step of how you solved the problem.",
+                "correction": "Try showing your steps like: 2*3=6, 6+6=12",
+                "followUpQuestion": question
+            }).encode())
+            return
+
         if not question or not correct_steps or not student_steps:
 
             self.send_response(400)
