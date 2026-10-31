@@ -35,5 +35,5 @@ for ex in examples:
     time.sleep(2)
 
 total = len(results)
-passed_count = sum(1 for r in results if r[3])
+passed_count = sum(r[3] for r in results)
 print(f"\n{passed_count}/{total} passed")
