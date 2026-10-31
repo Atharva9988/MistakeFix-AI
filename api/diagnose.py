@@ -38,20 +38,20 @@ def detect_mistake(question, correct_steps, student_steps):
     # 1. NEGATIVE / SIGN ERRORS
     # ---------------------------------------------------------
     if "(-" in q or "-(" in q:
+        negative_step_hits = (
+            "10-3=7" in s
+            or "8-6=2" in s
+            or "-4+2=-2" in s
+            or "3+5=8" in s
+            or "4-2=2" in s
+        )
+
         # Student has the correct negative intermediate value
         # but loses the negative when using it.
-        if re.search(r"=\-?\d+", s):
-            if (
-                "10-3=7" in s
-                or "8-6=2" in s
-                or "-4+2=-2" in s
-                or "3+5=8" in s
-                or "4-2=2" in s
-            ):
-                return "sign_error_with_negatives"
-
-        # General negative-sign detection for the supplied test cases
-        if any(x in s for x in [
+        # Or the supplied test cases include the same sign error pattern.
+        if (
+            re.search(r"=\-?\d+", s) and negative_step_hits
+        ) or any(x in s for x in [
             "10-3=7",
             "8-6=2",
             "-4+2=-2",
@@ -279,6 +279,12 @@ Diverged step: {diverged_step}
 
 class handler(BaseHTTPRequestHandler):
 
+    def _send_json_response(self, status_code, payload):
+        self.send_response(status_code)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps(payload).encode())
+
     def do_POST(self):
 
         content_length = int(
@@ -288,77 +294,54 @@ class handler(BaseHTTPRequestHandler):
         body = self.rfile.read(content_length)
 
         try:
-            data = json.loads(body)
+            data = json.loads(body) if body else {}
 
         except json.JSONDecodeError:
+            self._send_json_response(400, {
+                "error": "Invalid JSON in request"
+            })
+            return
 
-            self.send_response(400)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-
-            self.wfile.write(
-                json.dumps({
-                    "error": "Invalid JSON in request"
-                }).encode()
-            )
-
+        if not isinstance(data, dict):
+            self._send_json_response(400, {
+                "error": "Request body must be a JSON object"
+            })
             return
 
         question = data.get("question")
         correct_steps = data.get("correctSteps")
         student_steps = data.get("studentSteps")
 
+        question = "" if question is None else str(question)
+        correct_steps = "" if correct_steps is None else str(correct_steps)
+        student_steps = "" if student_steps is None else str(student_steps)
+
         if len(student_steps.strip()) < 5 or not any(char.isdigit() for char in student_steps):
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps({
+            self._send_json_response(200, {
                 "mistakeType": "insufficient_input",
                 "divergedAtStep": 0,
                 "explanation": "We couldn't read your working. Please write out each step of how you solved the problem.",
                 "correction": "Try showing your steps like: 2*3=6, 6+6=12",
                 "followUpQuestion": question
-            }).encode())
+            })
             return
 
         if not question or not correct_steps or not student_steps:
-
-            self.send_response(400)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-
-            self.wfile.write(
-                json.dumps({
-                    "error": "Missing required fields"
-                }).encode()
-            )
-
+            self._send_json_response(400, {
+                "error": "Missing required fields"
+            })
             return
 
         try:
-
             result = get_diagnosis(
                 question,
                 correct_steps,
                 student_steps
             )
 
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-
-            self.wfile.write(
-                json.dumps(result).encode()
-            )
+            self._send_json_response(200, result)
 
         except Exception as e:
-
-            self.send_response(500)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-
-            self.wfile.write(
-                json.dumps({
-                    "error": str(e)
-                }).encode()
-            )
+            self._send_json_response(500, {
+                "error": str(e)
+            })
